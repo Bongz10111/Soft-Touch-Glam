@@ -15,11 +15,9 @@
       --color-gold-light: #e6c862;
       --color-cream: #fffdf5; /* Light Background */
       --color-lightest: #fcfcfc;
-      --color-pink: #f8e8e8;
-      --color-pink-light: #fdf5f5;
-      --color-pink-dark: #f0d6d6;
-      --color-hero-bg: #f48dc080; /* Extracted from hero background */
-      --color-hero-light: #e5bb33;
+      --color-pink: #ff69b4;
+      --color-pink-light: rgba(255, 105, 180, 0.2);
+      --color-pink-dark: #ff1493;
     }
 
     * { 
@@ -88,12 +86,12 @@
 
     /* --- 1. Navbar --- */
     header {
-      background: var(--color-hero-bg);
+      background: var(--color-black);
       padding: 1rem 0;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
     nav {
       display: flex;
@@ -108,6 +106,8 @@
     .logo-img {
       height: 50px;
       width: auto;
+      border-radius: 50%;
+      border: 2px solid var(--color-gold);
     }
     .logo h1 {
       font-family: 'Playfair Display', serif;
@@ -167,8 +167,8 @@
 
     /* --- 2. Hero Section --- */
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
-                  url('assets/hero.png');
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
+                  url('https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -191,6 +191,8 @@
       width: auto;
       margin-bottom: 2rem;
       filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.7));
+      border-radius: 50%;
+      border: 3px solid var(--color-gold);
     }
 
     .hero h1 {
@@ -237,17 +239,23 @@
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       border: 2px solid var(--color-gold);
-      transition: transform 0.4s;
+      transition: all 0.4s ease;
       position: relative;
     }
     .gallery-item:hover {
       transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+      border-color: var(--color-pink);
     }
     .gallery-item img {
       width: 100%;
       height: 250px;
       object-fit: cover;
       display: block;
+      transition: all 0.4s ease;
+    }
+    .gallery-item:hover img {
+      filter: brightness(1.1);
     }
     .gallery-item::after {
       content: "💅";
@@ -272,7 +280,7 @@
 
     /* --- 4. Services (Pricing) --- */
     #services {
-      background: var(--color-pink-light);
+      background: var(--color-cream);
     }
     .services-grid {
       display: flex;
@@ -290,7 +298,7 @@
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
       display: flex;
       flex-direction: column;
-      transition: transform 0.3s;
+      transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
     }
@@ -302,10 +310,16 @@
       right: 0;
       height: 5px;
       background: var(--color-gold);
+      transition: all 0.4s ease;
     }
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 15px 30px rgba(255, 105, 180, 0.3);
+      border-color: var(--color-pink);
+    }
+    .service-card:hover::before {
+      background: var(--color-pink);
+      height: 8px;
     }
     .service-card h3 {
       font-family: 'Playfair Display', serif;
@@ -313,6 +327,10 @@
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
       text-align: center;
+      transition: color 0.4s ease;
+    }
+    .service-card:hover h3 {
+      color: var(--color-pink);
     }
     .service-card ul {
       list-style: none;
@@ -323,15 +341,23 @@
       justify-content: space-between;
       padding: 0.75rem 0;
       border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .service-card:hover li {
+      border-bottom-color: rgba(255, 105, 180, 0.2);
     }
     .service-card li span:last-child {
       font-weight: 600;
       color: var(--color-gold);
+      transition: color 0.4s ease;
+    }
+    .service-card:hover li span:last-child {
+      color: var(--color-pink);
     }
 
     /* --- 5. Booking Section --- */
     #booking {
-      background: var(--color-cream);
+      background: var(--color-white);
     }
     .booking-container {
       max-width: 800px;
@@ -528,7 +554,7 @@
       font-weight: 600;
     }
     .time-slot.booked {
-      background: var(--color-pink-dark);
+      background: var(--color-pink-light);
       color: #999;
       cursor: not-allowed;
       text-decoration: line-through;
@@ -552,7 +578,7 @@
 
     /* --- 6. Footer --- */
     footer {
-      background: var(--color-hero-bg);
+      background: var(--color-black);
       color: var(--color-gold);
       padding: 2.5rem 0;
       text-align: center;
@@ -626,7 +652,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: var(--color-hero-bg);
+        background: var(--color-black);
         padding: 5rem 0 2rem;
         gap: 0;
         z-index: 999;
@@ -734,7 +760,6 @@
     <div class="container">
       <nav>
         <div class="logo">
-          <!-- UPDATE THIS PATH WITH YOUR ACTUAL LOGO FILE -->
           <img src="assets/logo.jpg" alt="Soft Touch Nails Logo" class="logo-img">
           <h1>Soft Touch Glam</h1>
         </div>
@@ -759,16 +784,15 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <!-- UPDATE THIS PATH WITH YOUR ACTUAL LOGO FILE -->
         <img src="assets/logo.jpg" alt="Soft Touch Nails Logo" class="hero-logo">
         <h1>Soft Touch Glam</h1>
         <div class="tagline">Elevate Your Nail Game</div>
         <p>Treat Yourself to <strong>Elegant</strong> Manicures, Pedicures, and Relaxing Massages in a Stylish Exclusive Setting.</p>
+        <a href="#booking" class="gold-btn">Book Now</a>
       </div>
     </div>
   </section>
 
-  <!-- Rest of your HTML remains exactly the same -->
   <section id="gallery" class="section-padding">
     <div class="container">
       <h2>Gallery of Excellence</h2>
@@ -779,13 +803,12 @@
         <div class="gallery-item"><img src="assets/nail4.jpg" alt="Foot spa and pedicure"></div>
         <div class="gallery-item"><img src="assets/nail5.jpg" alt="Elegant bridal nails"></div>
         <div class="gallery-item"><img src="assets/nail6.jpg" alt="Matte black and gold accent nails"></div>
-        <div class="gallery-item"><img src="assets/nail7.jpg" alt="Gel nail extensions"></div>
-        <div class="gallery-item"><img src="assets/nail8.jpg" alt="Gel nail extensions"></div>
+        <div class="gallery-item"><img src="assets/nail7.jpg" alt="Elegant bridal nails"></div>
+        <div class="gallery-item"><img src="assets/nail8.jpg" alt="Elegant bridal nails"></div>
       </div>
     </div>
   </section>
 
-  <!-- Rest of your HTML (services, booking, footer) remains exactly the same -->
   <section id="services" class="section-padding">
     <div class="container">
       <h2>Our Signature Services</h2>
@@ -920,7 +943,6 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <!-- Your existing JavaScript remains exactly the same -->
   <script>
     // Mobile menu functionality
     const hamburger = document.getElementById('hamburger');
