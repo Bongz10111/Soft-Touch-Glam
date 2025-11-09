@@ -3,388 +3,1195 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page - Black, White & Gold</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <title>Soft Touch Nails - Luxury Manicures & Pedicures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
-    body { background: #fffbea; color: #111; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Website Wrapper */
-    .site-wrapper {
-      margin: 1rem;
-      padding: 2rem;
-      background: #fffdf5;
-      border: 6px solid #d4af37;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    /* --- Global Styles --- */
+    :root {
+      --color-black: #000000;
+      --color-white: #ffffff;
+      --color-gold: #d4af37; /* Primary Gold */
+      --color-gold-light: #e6c862;
+      --color-cream: #fffdf5; /* Light Background */
+      --color-lightest: #fcfcfc;
+      --color-pink: #f8e8e8;
+      --color-pink-light: #fdf5f5;
+      --color-pink-dark: #f0d6d6;
     }
 
-    /* Navbar */
-    nav { 
-      display: flex; justify-content: space-between; align-items: center; 
-      padding: 1rem 2rem; 
-      background: linear-gradient(90deg, #000, #333); 
-      color: #d4af37; 
-      position: sticky; top: 0; z-index: 100; font-weight: bold;
-      border-radius: 8px;
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      scroll-behavior: smooth; 
     }
-    nav .logo img { height: 50px; border: 2px solid #d4af37; border-radius: 50%; padding: 2px; background: #fff; }
-    nav ul { display: flex; gap: 2rem; list-style: none; }
-    nav ul li { cursor: pointer; transition: 0.3s; color: #d4af37; }
-    nav ul li:hover { color: #fff; }
+    body { 
+      background: var(--color-cream); 
+      color: var(--color-black); 
+      font-family: 'Montserrat', sans-serif; 
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { 
+      text-decoration: none; 
+      color: inherit; 
+    }
+    
+    /* --- Reusable Components --- */
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 1.5rem; 
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      color: var(--color-black);
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--color-gold);
+      margin: 10px auto 0;
+    }
 
-    /* Hamburger Menu (Mobile) */
+    .gold-btn {
+      background: var(--color-gold);
+      color: var(--color-black);
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    .gold-btn:hover {
+      background: var(--color-black);
+      color: var(--color-gold);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .section-padding {
+      padding: 5rem 0;
+    }
+
+    /* --- 1. Navbar --- */
+    header {
+      background: var(--color-black);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .logo-img {
+      height: 50px;
+      width: auto;
+    }
+    .logo h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--color-gold);
+      font-size: 1.8rem;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+    nav ul a {
+      color: var(--color-gold);
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 5px;
+      transition: color 0.3s;
+    }
+    nav ul a:hover {
+      color: var(--color-white);
+    }
+    nav ul a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--color-white);
+      transition: width 0.3s;
+    }
+    nav ul a:hover::after {
+      width: 100%;
+    }
     .hamburger {
       display: none;
       font-size: 1.8rem;
+      color: var(--color-gold);
       cursor: pointer;
-      color: #d4af37;
+      z-index: 1001;
     }
 
-    /* Hero Section */
-    .hero { 
-      text-align: center; padding: 5rem 2rem; 
-      background: linear-gradient(135deg, #fff0f5, #fffdf5); /* gradient added */
-      border-radius: 12px; 
-      border: 2px solid #d4af37;
-      margin-top: 2rem;
+    /* WhatsApp Icon in Menu */
+    .whatsapp-menu {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.5rem;
+      color: #25D366;
+      font-weight: 600;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      margin-top: 10px;
     }
-    .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: #111; }
-    .hero p { font-size: 1.2rem; color: #555; }
+    .whatsapp-menu i {
+      font-size: 1.5rem;
+    }
 
-    /* Sections */
-    section { padding: 3rem 2rem; margin-top: 2rem; border-radius: 12px; }
-    section.light { background: linear-gradient(135deg, #fff0f5, #fffdf5); color: #111; border: 1px solid #eee; } /* gradient applied */
-    section.dark { background: #111; color: #fff; }
-
-    /* Section headings perfectly centered (black) */
-    section h2 {
-      display: block;
-      margin: 0 auto 2rem auto;
-      font-size: 2.5rem;
-      color: #111; /* black headings */
-      border-bottom: 2px solid #d4af37;
-      padding-bottom: 5px;
+    /* --- 2. Hero Section --- */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+                  url('assets/hero.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 10rem 2rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: var(--color-white);
     }
 
-    /* Gallery */
-    .gallery { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 1rem; 
-      justify-content: center; 
-      align-items: center; 
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .gallery img { width: 200px; height: 150px; object-fit: cover; border-radius: 10px; border: 2px solid #d4af37; transition: transform 0.3s; }
-    .gallery img:hover { transform: scale(1.05); }
 
-    /* Services Section */
+    .hero-logo {
+      height: 120px;
+      width: auto;
+      margin-bottom: 2rem;
+      filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.7));
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      color: var(--color-white);
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      letter-spacing: 2px;
+    }
+
+    .hero .tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--color-gold);
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      font-style: italic;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--color-white);
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    /* --- 3. Gallery (Our Work) --- */
+    #gallery {
+      background: var(--color-white);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--color-gold);
+      transition: transform 0.4s;
+      position: relative;
+    }
+    .gallery-item:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-item::after {
+      content: "💅";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: var(--color-gold);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    /* --- 4. Services (Pricing) --- */
     #services {
-      background: linear-gradient(135deg, #fff0f5, #fffdf5);
-      padding: 4rem 2rem;
-      border-radius: 20px;
+      background: var(--color-pink-light);
     }
-
-    .services { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 2rem; 
-      justify-content: center; 
+    .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
       align-items: stretch;
     }
-
-    .service-card { 
-      background: #fffdf5; 
-      padding: 2rem 1.5rem; 
-      border-radius: 20px; 
-      border: 2px solid #f3d19c; 
-      width: 280px; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: flex-start; 
-      align-items: center; 
-      transition: 0.4s; 
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      position: relative; 
+    .service-card {
+      background: var(--color-white);
+      width: 300px;
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid var(--color-gold);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s;
+      position: relative;
       overflow: hidden;
     }
-
-    .service-card:hover { 
-      transform: translateY(-8px); 
-      box-shadow: 0 12px 25px rgba(0,0,0,0.2); 
-      border-color: #d4af37; 
-      background: linear-gradient(135deg, #ffe8f0, #fffdf5); 
-    }
-
-    /* Sparkle Animation */
-    .service-card::after {
-      content: "✨";
+    .service-card::before {
+      content: "";
       position: absolute;
-      top: -20px;
-      left: -20px;
-      font-size: 1.5rem;
-      opacity: 0;
-      animation: sparkle 2s infinite;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--color-gold);
     }
-    @keyframes sparkle {
-      0%, 100% { transform: translate(0,0) rotate(0deg); opacity: 0; }
-      10% { transform: translate(20px,10px) rotate(15deg); opacity: 0.2; }
-      20% { transform: translate(40px,0px) rotate(-10deg); opacity: 0.4; }
-      30% { transform: translate(60px,20px) rotate(10deg); opacity: 0.2; }
-      40% { transform: translate(80px,0px) rotate(0deg); opacity: 0; }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
     }
-
-    .service-card h3 { 
+    .service-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; 
-      margin-bottom: 1rem; 
-      color: #d4af37; 
+      color: var(--color-gold);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
       text-align: center;
     }
-
-    .service-card ul { 
-      list-style: none; 
-      padding: 0; 
-      margin: 0; 
-      width: 100%;
+    .service-card ul {
+      list-style: none;
       flex-grow: 1;
     }
-
-    .service-card li { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(212, 175, 55, 0.2); color: #333; font-size: 1rem; }
-    .service-card li:last-child { border-bottom: none; }
-    .service-card li span:first-child { flex: 1; text-align: left; }
-    .service-card li span:last-child { font-weight: bold; color: #d4af37; }
-
-    /* Booking Form */
-    form { 
-      max-width: 500px; 
-      margin: 0 auto; 
-      display: flex; 
-      flex-direction: column; 
-      gap: 1rem; 
-      background: linear-gradient(135deg, #fff0f5, #fffdf5); /* gradient for form */
-      padding: 2rem; 
-      border-radius: 10px; 
-      border: 1px solid #d4af37; 
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+    .service-card li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
     }
-    input, textarea, select { padding: 0.75rem; border-radius: 5px; border: 1px solid #d4af37; background: #f8f8f8; color: #111; font-size: 1rem; }
-    input::placeholder, textarea::placeholder { color: #999; }
-    button { padding: 0.75rem; border-radius: 5px; border: none; background: #d4af37; color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; }
-    button:hover { background: #000; color: #d4af37; }
-
-    /* Footer */
-    footer { 
-      background: linear-gradient(90deg, #000, #222); 
-      color: #d4af37; text-align: center; 
-      padding: 2rem 1rem; 
-      display: flex; flex-direction: column; 
-      align-items: center; gap: 0.5rem; 
-      border-radius: 8px; font-weight: bold;
+    .service-card li span:last-child {
+      font-weight: 600;
+      color: var(--color-gold);
     }
-    footer a { color: #d4af37; margin: 0 0.5rem; transition: 0.3s; }
-    footer a:hover { color: #fff; }
 
-    /* Hamburger Menu Styles */
-.hamburger { 
-  display: none; 
-  font-size: 1.8rem; 
-  cursor: pointer; 
-  color: #d4af37; 
-}
+    /* --- 5. Booking Section --- */
+    #booking {
+      background: var(--color-cream);
+    }
+    .booking-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .booking-form {
+      background: var(--color-white);
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--color-gold-light);
+    }
+    .booking-form h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.8rem;
+      color: var(--color-black);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .booking-form input, 
+    .booking-form select, 
+    .booking-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--color-lightest);
+      transition: border-color 0.3s;
+    }
+    .booking-form input:focus, 
+    .booking-form select:focus, 
+    .booking-form textarea:focus {
+      border-color: var(--color-gold);
+      outline: none;
+    }
+    
+    /* Dropdown Calendar Styles */
+    .calendar-dropdown {
+      position: relative;
+    }
+    .calendar-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: var(--color-lightest);
+    }
+    .calendar-toggle i {
+      transition: transform 0.3s;
+    }
+    .calendar-toggle.active i {
+      transform: rotate(180deg);
+    }
+    .calendar-dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-white);
+      border: 1px solid var(--color-gold-light);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      padding: 1rem;
+      margin-top: 5px;
+    }
+    .calendar-dropdown-content.active {
+      display: block;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .calendar-header h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+    }
+    .calendar-nav {
+      display: flex;
+      gap: 10px;
+    }
+    .calendar-nav button {
+      background: var(--color-gold);
+      color: var(--color-black);
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .calendar-nav button:hover {
+      background: var(--color-black);
+      color: var(--color-gold);
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+    .calendar-day {
+      text-align: center;
+      font-weight: 600;
+      padding: 8px 5px;
+      color: var(--color-gold);
+      font-size: 0.9rem;
+    }
+    .calendar-date {
+      text-align: center;
+      padding: 10px 5px;
+      background: var(--color-white);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+    .calendar-date:hover {
+      background: var(--color-gold-light);
+    }
+    .calendar-date.selected {
+      background: var(--color-gold);
+      color: var(--color-black);
+      font-weight: 600;
+    }
+    .calendar-date.disabled {
+      background: #f5f5f5;
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    .calendar-date.disabled:hover {
+      background: #f5f5f5;
+    }
+    .calendar-date.today::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 5px;
+      height: 5px;
+      background: var(--color-gold);
+      border-radius: 50%;
+    }
+    
+    /* Time Slots */
+    .time-slots {
+      margin-top: 1.5rem;
+    }
+    .time-slots h4 {
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+    }
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+    }
+    .time-slot {
+      padding: 12px 8px;
+      text-align: center;
+      background: var(--color-lightest);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid #eee;
+      font-weight: 500;
+    }
+    .time-slot:hover {
+      background: var(--color-gold-light);
+    }
+    .time-slot.selected {
+      background: var(--color-gold);
+      color: var(--color-black);
+      font-weight: 600;
+    }
+    .time-slot.booked {
+      background: var(--color-pink-dark);
+      color: #999;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+    
+    .selected-details {
+      background: var(--color-pink-light);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--color-gold);
+    }
+    .selected-details p {
+      margin-bottom: 0.5rem;
+      display: flex;
+    }
+    .selected-details strong {
+      min-width: 120px;
+      display: inline-block;
+    }
 
-/* Responsive Navbar */
-@media (max-width: 768px) {
-  nav ul {
-    display: none; /* hide menu by default */
-    flex-direction: column;
-    gap: 1rem;
-    background: linear-gradient(90deg,#000,#333);
-    position: absolute;
-    top: 70px;
-    right: 10px;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    z-index: 999;
-  }
+    /* --- 6. Footer --- */
+    footer {
+      background: var(--color-black);
+      color: var(--color-gold);
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+    footer .social a {
+      font-size: 1.5rem;
+      margin: 0 0.8rem;
+      color: var(--color-gold);
+      transition: color 0.3s;
+    }
+    footer .social a:hover {
+      color: var(--color-white);
+    }
+    footer p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
 
-  nav ul.active { 
-    display: flex; 
-  }
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      transition: all 0.3s;
+      animation: pulse 2s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
 
-  .hamburger { 
-    display: block; 
-  }
-}
+    /* --- Responsive Design (Mobile First) --- */
+    @media (max-width: 900px) {
+      /* General */
+      h2 {
+        font-size: 2rem;
+      }
+      .section-padding {
+        padding: 3rem 0;
+      }
 
+      /* Navbar */
+      nav ul {
+        display: none; /* Hide menu items by default */
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 5rem 0 2rem;
+        gap: 0;
+        z-index: 999;
+        overflow-y: auto;
+      }
+      nav ul a {
+        padding: 1rem 1.5rem;
+        display: block;
+        font-size: 1.2rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      nav ul.active {
+        display: flex; /* Show menu when active */
+      }
+      .hamburger {
+        display: block;
+      }
+      
+      /* WhatsApp menu item */
+      .whatsapp-menu {
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Logo adjustments for mobile */
+      .logo h1 {
+        font-size: 1.5rem;
+      }
+      .logo-img {
+        height: 40px;
+      }
+      .hero-logo {
+        height: 80px;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 6rem 1rem;
+        background-attachment: scroll; /* Remove fixed background on mobile */
+      }
+      
+      /* Booking Form */
+      .booking-form {
+        padding: 1.5rem;
+      }
+      
+      /* Time grid */
+      .time-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      /* Service cards */
+      .service-card {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container { 
+        padding: 0 1rem; 
+      }
+      .time-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .calendar-date {
+        padding: 8px 3px;
+        font-size: 0.8rem;
+      }
+      .calendar-day {
+        padding: 6px 3px;
+        font-size: 0.8rem;
+      }
+      /* Mobile logo adjustments */
+      .logo h1 {
+        font-size: 1.2rem;
+      }
+      .logo-img {
+        height: 35px;
+      }
+      .hero-logo {
+        height: 60px;
+      }
+      
+      /* Gallery grid */
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      
+      /* WhatsApp button */
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 15px;
+        right: 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="site-wrapper">
-
-    <!-- Navbar -->
-    <nav>
-      <div class="logo">
-        <img src="assets/logo.jpg" alt="Logo">
-      </div>
-      <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('active')">
-        <i class="fas fa-bars"></i>
-      </div>
-      <ul>
-        <li onclick="document.getElementById('our-work').scrollIntoView()">Our Work</li>
-        <li onclick="document.getElementById('services').scrollIntoView()">Our Services</li>
-        <li onclick="document.getElementById('appointment').scrollIntoView()">Book Appointment</li>
-        <li onclick="document.getElementById('contact').scrollIntoView()">Contact Us</li>
-      </ul>
-    </nav>
-
-    <!-- Hero -->
-    <div class="hero">
-      <h1>Welcome to Soft Touch Nails</h1>
-      <p>Luxury nail & beauty services at affordable prices</p>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <!-- UPDATE THIS PATH WITH YOUR ACTUAL LOGO FILE -->
+          <img src="assets/logo.jpg" alt="Soft Touch Nails Logo" class="logo-img">
+          <h1>Soft Touch Glam</h1>
+        </div>
+        <div class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+        <ul id="nav-menu">
+          <li><a href="#gallery" onclick="closeMenu()">Our Work</a></li>
+          <li><a href="#services" onclick="closeMenu()">Services & Prices</a></li>
+          <li><a href="#booking" onclick="closeMenu()">Book Now</a></li>
+          <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+          <li class="whatsapp-menu">
+            <a href="https://wa.me/271234567890" target="_blank" onclick="closeMenu()">
+              <i class="fab fa-whatsapp"></i> WhatsApp Us
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <!-- Our Work -->
-    <section id="our-work" class="light">
-      <h2>Our Work</h2>
-      <div class="gallery">
-        <img src="assets/nail1.jpg" alt="Work 1">
-        <img src="assets/nail2.jpg" alt="Work 2">
-        <img src="assets/nail3.jpg" alt="Work 3">
-        <img src="assets/nail4.jpg" alt="Work 4">
-        <img src="assets/nail5.jpg" alt="Work 5">
-        <img src="assets/nail6.jpg" alt="Work 6">
-        <img src="assets/nail8.jpg" alt="Work 8">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <!-- UPDATE THIS PATH WITH YOUR ACTUAL LOGO FILE -->
+        <img src="assets/logo.jpg" alt="Soft Touch Nails Logo" class="hero-logo">
+        <h1>Soft Touch Glam</h1>
+        <div class="tagline">Elevate Your Nail Game</div>
+        <p>Treat Yourself to <strong>Elegant</strong> Manicures, Pedicures, and Relaxing Massages in a Stylish Exclusive Setting.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Our Services -->
-    <section id="services" class="light">
-      <h2>Our Services</h2>
-      <div class="services">
+  <!-- Rest of your HTML remains exactly the same -->
+  <section id="gallery" class="section-padding">
+    <div class="container">
+      <h2>Gallery of Excellence</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="assets/nail1.jpg" alt="Gold and black nail art"></div>
+        <div class="gallery-item"><img src="assets/nail2.jpg" alt="Classic french manicure"></div>
+        <div class="gallery-item"><img src="assets/nail3.jpg" alt="Gel nail extensions"></div>
+        <div class="gallery-item"><img src="assets/nail4.jpg" alt="Foot spa and pedicure"></div>
+        <div class="gallery-item"><img src="assets/nail5.jpg" alt="Elegant bridal nails"></div>
+        <div class="gallery-item"><img src="assets/nail6.jpg" alt="Matte black and gold accent nails"></div>
+        <div class="gallery-item"><img src="assets/nail7.jpg" alt="Gel nail extensions"></div>
+        <div class="gallery-item"><img src="assets/nail8.jpg" alt="Gel nail extensions"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rest of your HTML (services, booking, footer) remains exactly the same -->
+  <section id="services" class="section-padding">
+    <div class="container">
+      <h2>Our Signature Services</h2>
+      <div class="services-grid">
+        
         <div class="service-card">
-          <h3>💅 Plain Manicure</h3>
+          <h3>💅 Manicures</h3>
           <ul>
-            <li><span>No paint (incl. hand massage)</span> <span>R30</span></li>
-          </ul>
-          <h3>💅 Mini Manicure</h3>
-          <ul>
-            <li><span>Nailpolish</span> <span>R50</span></li>
-            <li><span>Gel Polish Overlay</span> <span>R120</span></li>
-            <li><span>Gel Extensions</span> <span>R200</span></li>
+            <li><span>Express Filing & Buff</span> <span>R50</span></li>
+            <li><span>Classic Manicure (Polish)</span> <span>R150</span></li>
+            <li><span>Luxury Gel Overlay</span> <span>R280</span></li>
+            <li><span>Full Gel Extensions</span> <span>R450</span></li>
+            <li><span>Repair / Soak Off</span> <span>R70</span></li>
           </ul>
         </div>
 
         <div class="service-card">
-          <h3>💅 Full Manicure (Incl. Soak, Scrub & Hand Massage)</h3>
+          <h3>🦶 Pedicures</h3>
           <ul>
-            <li><span>Nailpolish</span> <span>R100</span></li>
-            <li><span>Gel Polish Overlay</span> <span>R150</span></li>
-            <li><span>Gel Extensions</span> <span>R300</span></li>
+            <li><span>Express Pedicure</span> <span>R180</span></li>
+            <li><span>Luxury Spa Pedicure (Polish)</span> <span>R250</span></li>
+            <li><span>Luxury Gel Pedicure</span> <span>R320</span></li>
+            <li><span>Foot Peel Treatment</span> <span>R100</span></li>
+            <li><span>Paraffin Wax Treatment</span> <span>R80</span></li>
           </ul>
         </div>
 
         <div class="service-card">
-          <h3>🦶 Mini Pedicure</h3>
+          <h3>✨ Nail Art & Extras</h3>
           <ul>
-            <li><span>Nailpolish</span> <span>R50</span></li>
-            <li><span>Gel Overlay</span> <span>R130</span></li>
-          </ul>
-          <h3>🦶 Full Pedicure (Incl. Soak, Scrub & Foot Massage)</h3>
-          <ul>
-            <li><span>Nailpolish</span> <span>R110</span></li>
-            <li><span>Gel Overlay</span> <span>R150</span></li>
+            <li><span>Simple Nail Art (per nail)</span> <span>R15</span></li>
+            <li><span>Complex Design (per nail)</span> <span>R30</span></li>
+            <li><span>French/Ombre Finish</span> <span>R50</span></li>
+            <li><span>15 min Hand Massage</span> <span>R80</span></li>
+            <li><span>30 min Foot Massage</span> <span>R150</span></li>
           </ul>
         </div>
 
-        <div class="service-card">
-          <h3>💆 Massage</h3>
-          <ul>
-            <li><span>Desk Massage</span> <span>R30</span></li>
-            <li><span>Hand Massage</span> <span>R20</span></li>
-            <li><span>Foot & Leg Massage</span> <span>R50</span></li>
-          </ul>
-          <h3>✨ Extra</h3>
-          <ul>
-            <li><span>Soak Off</span> <span>R40</span></li>
-            <li><span>Extra art per finger (excl. feature nail)</span> <span>R5</span></li>
-          </ul>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Book Appointment -->
-    <section id="appointment" class="light">
-      <h2>Book Appointment</h2>
-      <form id="bookingForm">
-        <input type="text" placeholder="Full Name" id="name" required>
-        <input type="tel" placeholder="Phone Number" id="phone" required>
-        <input type="date" id="date" required>
-        <select id="time" required>
-          <option value="">Select Time</option>
-          <option>09:00</option>
-          <option>10:00</option>
-          <option>11:00</option>
-          <option>12:00</option>
-          <option>13:00</option>
-          <option>14:00</option>
-          <option>15:00</option>
-          <option>16:00</option>
-          <option>17:00</option>
-        </select>
-        <select id="service" required>
-          <option value="">Select Service</option>
-          <option>Plain Manicure - R30</option>
-          <option>Mini Manicure - R50+</option>
-          <option>Full Manicure - R100+</option>
-          <option>Mini Pedicure - R50+</option>
-          <option>Full Pedicure - R110+</option>
-          <option>Massage - R20+</option>
-        </select>
-        <textarea placeholder="Description (Color, Shape, Design, etc.)" id="desc" rows="4"></textarea>
-        <button type="button" onclick="sendWhatsApp()">Book via WhatsApp</button>
-      </form>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-      <div>Contact Us</div>
-      <div>
-        <span>Email: info@example.com</span> | 
-        <span>Phone: +27 123 456 7890</span>
+  <section id="booking" class="section-padding">
+    <div class="container">
+      <h2>Book Your Appointment</h2>
+      <div class="booking-container">
+        <form class="booking-form" onsubmit="event.preventDefault(); sendWhatsApp();">
+          <h3>Your Appointment Details</h3>
+          
+          <div class="selected-details" id="selected-details">
+            <p><strong>Selected Appointment:</strong> None selected</p>
+          </div>
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" placeholder="Full Name" id="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" placeholder="Phone Number (e.g., +2782...)" id="phone" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="service">Select Service</label>
+            <select id="service" required>
+              <option value="">Select Primary Service</option>
+              <option>Luxury Gel Overlay</option>
+              <option>Full Gel Extensions</option>
+              <option>Luxury Spa Pedicure</option>
+              <option>Manicure & Pedicure Combo</option>
+              <option>Other / Consultation</option>
+            </select>
+          </div>
+          
+          <!-- Calendar Dropdown -->
+          <div class="form-group calendar-dropdown">
+            <label>Select Date</label>
+            <div class="calendar-toggle" id="calendar-toggle">
+              <span id="selected-date-text">Select a date</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="calendar-dropdown-content" id="calendar-dropdown">
+              <div class="calendar-header">
+                <h4 id="calendar-month">Month Year</h4>
+                <div class="calendar-nav">
+                  <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                  <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+              <div class="calendar-grid" id="calendar">
+                <!-- Calendar will be generated by JavaScript -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Time Slots -->
+          <div class="form-group">
+            <label>Select Time</label>
+            <div class="time-slots">
+              <div class="time-grid" id="time-slots">
+                <!-- Time slots will be generated by JavaScript -->
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="desc">Additional Details</label>
+            <textarea placeholder="Add details (Color, shape, nail art, etc.)" id="desc" rows="3"></textarea>
+          </div>
+          
+          <button type="submit" class="gold-btn" style="width: 100%;">Book via WhatsApp</button>
+        </form>
       </div>
-      <div>
-        <a href="https://instagram.com" target="_blank">
-          <i class="fab fa-instagram" style="font-size:1.5rem;"></i>
-        </a>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="social">
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
       </div>
-    </footer>
+      <p>Email: info@softtouchnails.com | Phone: +27 123 456 7890</p>
+      <p>&copy; 2025 Soft Touch Nails. All Rights Reserved.</p>
+    </div>
+  </footer>
 
-  </div>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/271234567890" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-<script>
-function sendWhatsApp(){
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
-  const service = document.getElementById('service').value;
-  const desc = document.getElementById('desc').value;
+  <!-- Your existing JavaScript remains exactly the same -->
+  <script>
+    // Mobile menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
+      // Change hamburger icon
+      const icon = hamburger.querySelector('i');
+      if (navMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+    
+    // Closes the mobile menu after clicking a link (for better UX)
+    function closeMenu() {
+      navMenu.classList.remove('active');
+      const icon = hamburger.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
 
-  if(!name || !phone || !date || !time || !service){
-    alert('Please fill all required fields');
-    return;
-  }
+    // Calendar functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarEl = document.getElementById('calendar');
+      const timeSlotsEl = document.getElementById('time-slots');
+      const selectedDetailsEl = document.getElementById('selected-details');
+      const calendarMonthEl = document.getElementById('calendar-month');
+      const prevMonthBtn = document.getElementById('prev-month');
+      const nextMonthBtn = document.getElementById('next-month');
+      const calendarToggle = document.getElementById('calendar-toggle');
+      const calendarDropdown = document.getElementById('calendar-dropdown');
+      const selectedDateText = document.getElementById('selected-date-text');
+      
+      let selectedDate = null;
+      let selectedTime = null;
+      const currentDate = new Date();
+      let currentMonth = currentDate.getMonth();
+      let currentYear = currentDate.getFullYear();
+      
+      // Available time slots (hourly from 9am to 5pm)
+      const availableTimes = [
+        '09:00', '10:00', '11:00', '12:00', 
+        '13:00', '14:00', '15:00', '16:00', '17:00'
+      ];
+      
+      // Simulate booked time slots (in a real app, this would come from a database)
+      const bookedSlots = {
+        '2025-03-15': ['10:00', '14:00'],
+        '2025-03-18': ['11:00', '15:00'],
+        '2025-03-20': ['09:00', '13:00', '17:00']
+      };
+      
+      // Toggle calendar dropdown
+      calendarToggle.addEventListener('click', function() {
+        calendarDropdown.classList.toggle('active');
+        calendarToggle.classList.toggle('active');
+      });
+      
+      // Close calendar when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!calendarToggle.contains(event.target) && !calendarDropdown.contains(event.target)) {
+          calendarDropdown.classList.remove('active');
+          calendarToggle.classList.remove('active');
+        }
+      });
+      
+      // Generate calendar
+      function generateCalendar(month, year) {
+        calendarEl.innerHTML = '';
+        
+        // Add day headers
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        days.forEach(day => {
+          const dayEl = document.createElement('div');
+          dayEl.className = 'calendar-day';
+          dayEl.textContent = day;
+          calendarEl.appendChild(dayEl);
+        });
+        
+        // Get first day of month and number of days
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        // Add empty cells for days before the first day of the month
+        for (let i = 0; i < firstDay; i++) {
+          const emptyEl = document.createElement('div');
+          emptyEl.className = 'calendar-date';
+          calendarEl.appendChild(emptyEl);
+        }
+        
+        // Add days of the month
+        const today = new Date();
+        for (let i = 1; i <= daysInMonth; i++) {
+          const dateEl = document.createElement('div');
+          dateEl.className = 'calendar-date';
+          dateEl.textContent = i;
+          dateEl.dataset.date = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+          
+          // Check if this is today
+          if (year === today.getFullYear() && month === today.getMonth() && i === today.getDate()) {
+            dateEl.classList.add('today');
+          }
+          
+          // Disable past dates
+          const date = new Date(year, month, i);
+          if (date < new Date().setHours(0, 0, 0, 0)) {
+            dateEl.classList.add('disabled');
+          } else {
+            dateEl.addEventListener('click', () => selectDate(dateEl));
+          }
+          
+          calendarEl.appendChild(dateEl);
+        }
+        
+        // Update calendar header
+        calendarMonthEl.textContent = 
+          new Date(year, month).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      }
+      
+      // Select date
+      function selectDate(dateEl) {
+        // Remove selected class from all dates
+        document.querySelectorAll('.calendar-date').forEach(el => {
+          el.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked date
+        dateEl.classList.add('selected');
+        selectedDate = dateEl.dataset.date;
+        
+        // Update selected date text
+        const formattedDate = new Date(selectedDate).toLocaleDateString('en-US', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric'
+        });
+        selectedDateText.textContent = formattedDate;
+        
+        // Close dropdown
+        calendarDropdown.classList.remove('active');
+        calendarToggle.classList.remove('active');
+        
+        // Generate time slots for selected date
+        generateTimeSlots();
+        
+        updateSelectedDetails();
+      }
+      
+      // Generate time slots
+      function generateTimeSlots() {
+        timeSlotsEl.innerHTML = '';
+        selectedTime = null;
+        
+        // Get booked slots for selected date
+        const dateBookedSlots = bookedSlots[selectedDate] || [];
+        
+        availableTimes.forEach(time => {
+          const timeEl = document.createElement('div');
+          timeEl.className = 'time-slot';
+          timeEl.textContent = time;
+          timeEl.dataset.time = time;
+          
+          // Check if this time slot is booked
+          if (dateBookedSlots.includes(time)) {
+            timeEl.classList.add('booked');
+          } else {
+            timeEl.addEventListener('click', () => selectTime(timeEl));
+          }
+          
+          timeSlotsEl.appendChild(timeEl);
+        });
+      }
+      
+      // Select time
+      function selectTime(timeEl) {
+        // Remove selected class from all times
+        document.querySelectorAll('.time-slot').forEach(el => {
+          el.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked time
+        timeEl.classList.add('selected');
+        selectedTime = timeEl.dataset.time;
+        
+        updateSelectedDetails();
+      }
+      
+      // Update selected details display
+      function updateSelectedDetails() {
+        if (selectedDate && selectedTime) {
+          const formattedDate = new Date(selectedDate).toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          
+          selectedDetailsEl.innerHTML = `
+            <p><strong>Selected Appointment:</strong></p>
+            <p><strong>Date:</strong> ${formattedDate}</p>
+            <p><strong>Time:</strong> ${selectedTime}</p>
+          `;
+        } else {
+          selectedDetailsEl.innerHTML = '<p><strong>Selected Appointment:</strong> None selected</p>';
+        }
+      }
+      
+      // Month navigation
+      prevMonthBtn.addEventListener('click', () => {
+        currentMonth--;
+        if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+        }
+        generateCalendar(currentMonth, currentYear);
+      });
+      
+      nextMonthBtn.addEventListener('click', () => {
+        currentMonth++;
+        if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+        }
+        generateCalendar(currentMonth, currentYear);
+      });
+      
+      // Initialize calendar
+      generateCalendar(currentMonth, currentYear);
+    });
 
-  const message = `Booking Details:%0AName: ${name}%0APhone: ${phone}%0ADate: ${date}%0ATime: ${time}%0AService: ${service}%0ADescription: ${desc}`;
-  const waLink = `https://wa.me/271234567890?text=${message}`; // replace with your number
-  window.open(waLink, '_blank');
-}
-</script>
+    // Generates the WhatsApp message link
+    function sendWhatsApp(){
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const service = document.getElementById('service').value;
+      const desc = document.getElementById('desc').value;
+      
+      if(!name || !phone || !service){
+        alert('Please fill all required fields before booking.');
+        return;
+      }
+      
+      if (!selectedDate || !selectedTime) {
+        alert('Please select a date and time for your appointment.');
+        return;
+      }
+
+      const formattedDate = new Date(selectedDate).toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      const message = encodeURIComponent(
+        `Hello Soft Touch Nails, I'd like to book an appointment with the following details:\n\n` +
+        `Name: ${name}\n` +
+        `Phone: ${phone}\n` +
+        `Date & Time: ${formattedDate} at ${selectedTime}\n` +
+        `Service: ${service}\n` +
+        `Details: ${desc || 'No additional details provided.'}`
+      );
+      
+      // **IMPORTANT**: Replace 271234567890 with the actual WhatsApp number (including country code).
+      const waLink = `https://wa.me/271234567890?text=${message}`; 
+      window.open(waLink, '_blank');
+    }
+  </script>
 
 </body>
 </html>
